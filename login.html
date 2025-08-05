@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: forestgreen;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkblue;
+            
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+        }
+
+        .home-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .home-button a {
+            text-decoration: none;
+            color: #007bff;
+            margin-right: 10px
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>School Login</h2>
+        <form id="loginForm" onsubmit="return validateForm()">
+            <label for="role">Login as:</label>
+            <select id="role" name="role" required>
+                <option value="" disabled selected>Select your role</option>
+                <option value="student">Student</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <div id="adminFields" style="display: none;">
+                <label for="adminEmail">Email:</label>
+                <input type="email" id="adminEmail" name="adminEmail" required>
+            </div>
+
+            <div id="studentFields" style="display: none;">
+                <label for="studentId">Student ID:</label>
+                <input type="text" id="studentId" name="studentId" required>
+            </div>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <p id="error-message" class="error-message"></p>
+        <div class="home-button">
+            <a href="index.html">Home</a>
+        </div>
+        <div class="home-button">
+            <a href="signup.html">Sign Up</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('role').addEventListener('change', function() {
+            const adminFields = document.getElementById('adminFields');
+            const studentFields = document.getElementById('studentFields');
+            if (this.value === 'admin') {
+                adminFields.style.display = 'block';
+                studentFields.style.display = 'none';
+            } else if (this.value === 'student') {
+                adminFields.style.display = 'none';
+                studentFields.style.display = 'block';
+            }
+        });
+
+        function validateForm() {
+            const role = document.getElementById('role').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (role === "") {
+                errorMessage.textContent = "Please select your role.";
+                return false;
+            }
+
+            if (password === "") {
+                errorMessage.textContent = "Password is required.";
+                return false;
+            }
+
+            // Here you would typically send the data to the server for authentication
+            // For demonstration, we'll just log the values
+            if (role === 'admin') {
+                const email = document.getElementById('adminEmail').value;
+                console.log(`Role: ${role}, Email: ${email}, Password: ${password}`);
+            } else if (role === 'student') {
+                const studentId = document.getElementById(' studentId').value;
+                console.log(`Role: ${role}, Student ID: ${studentId}, Password: ${password}`);
+            }
+
+            alert("Login successful!");
+            return false; // Prevent form submission for demo purposes
+        }
+    </script>
+</body>
+</html>

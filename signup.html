@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: greenyellow;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .signup-container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+        }
+
+        .home-button {
+            margin-top: 20px; /* Space between the button and home link */
+            text-align: center;
+        }
+
+        .home-button a {
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Admin Sign Up</h2>
+        <form id="signupForm" onsubmit="return validateSignup()">
+            <label for="adminName">Name:</label>
+            <input type="text" id="adminName" name="adminName" required>
+            <label for="adminEmail">Email:</label>
+            <input type="email" id="adminEmail" name="adminEmail" required>
+            <label for="adminPhone">Phone Number:</label>
+            <input type="tel" id="adminPhone" name="adminPhone" required>
+            <label for="adminUsername">Username:</label>
+            <input type="text" id="adminUsername" name="adminUsername" required>
+
+            <label for="adminPassword">Password:</label>
+            <input type="password" id="adminPassword" name="adminPassword" required>
+            <label for="adminPassword">Confirm Password:</label>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <p id="error-message" class="error-message"></p>
+        <div class="home-button">
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <script>
+        function validateSignup() {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (username === "" || password === "") {
+                errorMessage.textContent = "All fields are required.";
+                return false;
+            }
+
+            // Simulate successful sign-up
+            alert("Admin signed up successfully!");
+            return false; // Prevent form submission for demo purposes
+        }
+    </script>
+</body>
+</html>
